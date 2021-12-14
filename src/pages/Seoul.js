@@ -3,9 +3,10 @@
 // *** 패키지 import
 import React from "react";
 import styled from "styled-components";
+import Grid from "@material-ui/core/Grid";
 
 import testImg from "../shared/images/redHeart.png";
-import { Grid, Text, Button, Input } from "../elements";
+import { Text, Button, Input } from "../elements";
 
 const Seoul = (props) => {
   return (
@@ -22,8 +23,10 @@ const Seoul = (props) => {
 };
 
 const Container = styled.div`
+  flex: column;
   min-width: 100%;
   min-height: 100%;
+  height: 500px
   background-color: black;
   box-sizing: border-box;
 `;

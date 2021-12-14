@@ -13,6 +13,7 @@ const Hmodal = (props) => {
 
   // 모달창 열렸는지 닫혔는지 정해준다
   const [hModal, setHModal] = React.useState(props.modal ? true : false);
+  console.log(hModal); //true로 잘 넘어옴
   // 모달창을 닫으면 header의 state도 false로 바꿔주기
   const modalOff = () => {
     setHModal(false);
@@ -22,15 +23,17 @@ const Hmodal = (props) => {
   // 회원가입 및 로그인 모달
   const [signupModal, setSignupModal] = React.useState(false);
   const [loginModal, setLoginModal] = React.useState(false);
-  // 회원가입 버튼 클릭 시
+  // console.log(signupModal);
+  // // 회원가입 버튼 클릭 시
   const signupModalOpen = () => {
-    // setLoginModal(false);
+    setHModal(false);
     setSignupModal(true);
-    // props.setFirstModalStatus(false);
+    //   console.log(hModal);
+    //   console.log(signupModal);
   };
   // 로그인 버튼 클릭 시
   const loginModalOpen = () => {
-    // props.setFirstModalStatus(false);
+    props.setFirstModalStatus(false);
     setLoginModal(true);
   };
   // 로그아웃 버튼 클릭 시
@@ -44,19 +47,19 @@ const Hmodal = (props) => {
   // if (user_token) {
   //   return (
   //     <React.Fragment>
-  //       <div>
-  //         <Modal
-  //           isOpen={hModal} // isOpen={true}로 모달창을 열 수 있다.
-  //           ariaHideApp={false} // appElement가 숨겨져야 하는지의 여부
-  //           onRequestClose={modalOff} // 모달창 이외의 부분이나 ESC를 누를 경우 모달창을 끈다.
-  //           className="Modal"
-  //           overlayClassName="Overlay"
-  //         >
-  //           <UserModal>
-  //             <UserModalBtn onClick={logOut}>로그아웃</UserModalBtn>
-  //           </UserModal>
-  //         </Modal>
-  //       </div>
+  // <div>
+  //   <Modal
+  //     isOpen={hModal} // isOpen={true}로 모달창을 열 수 있다.
+  //     ariaHideApp={false} // appElement가 숨겨져야 하는지의 여부
+  //     onRequestClose={modalOff} // 모달창 이외의 부분이나 ESC를 누를 경우 모달창을 끈다.
+  //     className="Modal"
+  //     overlayClassName="Overlay"
+  //   >
+  //     <UserModal>
+  //       <UserModalBtn onClick={logOut}>로그아웃</UserModalBtn>
+  //     </UserModal>
+  //   </Modal>
+  // </div>
   //     </React.Fragment>
   //   );
   // }
@@ -77,7 +80,9 @@ const Hmodal = (props) => {
             {signupModal && (
               <Signup
                 modal={signupModal}
-                setSignupModal={setSignupModal} //여기에 first모달 끄는걸 넣어야 하나? 순서 문제일 가능성이 있음
+                model={hModal}
+                setSignupModal={setSignupModal}
+                setFirstModalStatus={props.setFirstModalStatus}
               ></Signup>
             )}
             <UserModalBtn onClick={loginModalOpen}>로그인</UserModalBtn>

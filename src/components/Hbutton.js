@@ -10,6 +10,7 @@ const Hbutton = () => {
   const firstModalOpen = () => {
     setFirstModalStatus(true);
   };
+  console.log(firstModalStatus);
   return (
     <React.Fragment>
       <div>

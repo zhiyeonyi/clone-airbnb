@@ -10,10 +10,15 @@ import "../shared/modal.css";
 const Signup = (props) => {
   //모달창 열렸는지의 여부
   const [Smodal, setSModal] = React.useState(props.modal ? true : false);
+  const [SSmodal, setSSModal] = React.useState(props.hModal ? true : false);
+  console.log(Smodal);
+  console.log(SSmodal);
+
   //모달창을 닫으면 header의 state도 false로 바꾸기
   const modalOff = () => {
     setSModal(false);
     props.setSignupModal(false);
+    // props.setFirstModalStatus();
   };
 
   //회원가입 버튼 클릭 시
@@ -25,7 +30,7 @@ const Signup = (props) => {
 
   return (
     <React.Fragment>
-      {Smodal && (
+      {Smodal && SSmodal !== true && (
         <Modal isOpen={Smodal} ariaHideApp={false} onRequestClose={modalOff}>
           <Grid>
             <Text>회원가입</Text>

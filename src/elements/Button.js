@@ -13,6 +13,7 @@ const Button = (props) => {
     color,
     backGround,
     children,
+    display,
   } = props;
 
   const styles = {
@@ -24,6 +25,7 @@ const Button = (props) => {
     borderRadius: borderRadius,
     color: color,
     backGround: backGround,
+    display: display,
   };
 
   return (
@@ -55,6 +57,7 @@ const DefaultBtn = styled.button`
   border: ${(props) => props.border};
   border-radius: 8px;
   color: ${(props) => props.color};
+  display: ${(props) => props.display};
   background-color: ${(props) => props.backGround};
   box-sizing: boder-box;
   margin: 8px auto;
