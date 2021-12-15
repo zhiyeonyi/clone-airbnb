@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Text = (props) => {
-  const { bold, color, size, children, margin, position } = props;
+  const { bold, color, size, children, margin, position, center } = props;
 
   const styles = {
     bold: bold,
@@ -10,6 +10,7 @@ const Text = (props) => {
     size: size,
     margin: margin,
     position: position,
+    center: center,
   };
   return <P {...styles}>{children}</P>;
 };
@@ -24,6 +25,7 @@ Text.defaultProps = {
 };
 
 const P = styled.p`
+  text-align: ${(props) => (props.center ? "center" : "")};
   color: ${(props) => props.color};
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "600" : "400")};

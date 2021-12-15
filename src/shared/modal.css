@@ -1,6 +1,14 @@
-.Modal {
+.firstModal {
 }
 
-.Overlay {
+.firstOverlay {
   background-color: black;
+}
+
+.SecondModal {
+
+}
+
+.SecondOverlay {
+
 }

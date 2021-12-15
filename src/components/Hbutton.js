@@ -1,30 +1,139 @@
 import React from "react";
+import Modal from "react-modal";
 import styled from "styled-components";
 
-import Hmodal from "./Hmodal";
+import { FaUserCircle } from "react-icons/fa";
+import { IoReorderThreeOutline } from "react-icons/io5";
+import "../shared/modal.css";
+import Signup from "../pages/Signup";
 
 const Hbutton = () => {
-  // 모달 기본 세팅 true, false로 열고 닫아주기 위해 변수 지정
-  const [firstModalStatus, setFirstModalStatus] = React.useState(false);
-  // 버튼 클릭 시 모달창 활성화 시키기 위한 함수(위 변수를 true로 변환)
-  const firstModalOpen = () => {
-    setFirstModalStatus(true);
+  // const dispatch = useDispatch();
+  const user_token = localStorage.getItem("user_token") ? true : false; //토큰이 있으면
+
+  // 각각의 모달 상태 관리 위한 변수 선언
+  const [isFirstModal, setFirstModal] = React.useState(false); // First Modal
+  const [isSignModal, setSignModal] = React.useState(false); // Signup Modal
+  const [isLoginModal, setLoginModal] = React.useState(false); // Login Modal
+  // const [isLoginModal, setLoginModal] = React.uuseState(false); // Login Modal
+
+  // 아직 이해 안댐
+  // const modalOpen = (e, stateSub = true, stateMain = false) => {
+  //   setFirstModal(stateMain); //false
+  //   setSecModal(stateSub); //true
+  // }; // 이 부분에서 회원가입 모달이 true면 로그인모달은 false의 조건 작성
+
+  // 첫번째 모달 켜기
+  const firstModalOn = () => {
+    setFirstModal(true);
   };
-  console.log(firstModalStatus);
+  // 첫번째 모달 끄기
+  const firstModalOff = () => {
+    setFirstModal(false);
+  };
+  // 회원가입 모달 켜기, 첫번째 모달 끄기
+  const SignupOn = () => {
+    isSignModal ? setSignModal(false) : setSignModal(true); // 이렇게 해준 이유는 두번째 모달창으로 넘어가고 나서 모달창을 껐다가 다시 킬때 이미 true로 되어있어서 버튼이 활성화 되질 않는다.
+    setLoginModal(false); // 회원가입 눌렀을때 로그인 값은 false로 넘겨주기위해
+    setFirstModal(false);
+  };
+  // 로그인 모달 켜기, 첫번째 모달 끄기
+  const LoginOn = () => {
+    isLoginModal ? setLoginModal(false) : setLoginModal(true);
+    setSignModal(false);
+    setFirstModal(false);
+  };
+  // 로그아웃 버튼 클릭 시
+  const logOut = () => {
+    // dispatch(userDB함수)
+    // localStorage.removeItem("user_token") 토큰 삭제
+    window.location.reload();
+  };
+
   return (
-    <React.Fragment>
-      <div>
-        <Container onClick={firstModalOpen}>icon</Container>
-        {firstModalStatus && (
-          <Hmodal
-            modal={firstModalStatus}
-            setFirstModalStatus={setFirstModalStatus}
-          ></Hmodal>
-        )}
-      </div>
-    </React.Fragment>
+    <>
+      <Container
+        onClick={
+          firstModalOn
+          // () => {
+          //   isFirstModal ? setFirstModal(false) : setFirstModal(true);
+          // }
+        }
+      >
+        <IoReorderThreeOutline padding="7px 10px" size="30px" />
+        <FaUserCircle margin="0px 30px" size="30px" color="#BFBFBF" />
+      </Container>
+      {isFirstModal &&
+        (user_token ? (
+          <Modal
+            isOpen={isFirstModal}
+            ariaHideApp={false}
+            onRequestClose={firstModalOff}
+            className="firstModal"
+            overlayClassName="firstOverlay"
+          >
+            <UserModal>
+              <UserModalBtn onClick={logOut}>로그아웃</UserModalBtn>
+              <UserModalBtn>아이콘</UserModalBtn>
+            </UserModal>
+          </Modal>
+        ) : (
+          <Modal
+            isOpen={isFirstModal}
+            ariaHideApp={false}
+            onRequestClose={firstModalOff}
+            className="firstModal"
+            overlayClassName="firstOverlay"
+          >
+            <UserModal>
+              <UserModalBtn
+                onClick={
+                  SignupOn
+                  // () => {
+                  //   isSignModal ? setSignModal(false) : setSignModal(true);
+                  // }
+                }
+              >
+                회원가입
+              </UserModalBtn>
+              <UserModalBtn
+                onClick={
+                  LoginOn
+                  // () => {
+                  // isSignModal ? setSignModal(false) : setSignModal(true);
+                  // }
+                }
+              >
+                로그인
+              </UserModalBtn>
+            </UserModal>
+          </Modal>
+        ))}
+      {(isSignModal || isLoginModal) && (
+        <Signup _signStatus={isSignModal} _loginStatus={isLoginModal} />
+      )}
+    </>
   );
 };
+
+//  {user_token ? (
+//                <UserModal>
+//         <UserModalBtn onClick={logOut}>로그아웃</UserModalBtn>
+//       </UserModal>
+//         ) :
+/* <button type="primary" onClick={secModalOpen}>
+          Open Modal
+        </button> */
+/* <Modal
+        title="Second Modal"
+        isOpen={isSecModal}
+        ariaHideApp={false}
+        onRequestClose={secModalOff}
+        // onOk={(e) => modalOpen(e, false)}
+        // onCancel={(e) => modalOpen(e, false)}
+      >
+       //여긴 두번째 모달창
+      </Modal> */
 
 const Container = styled.button`
   width: 6rem;
@@ -37,6 +146,47 @@ const Container = styled.button`
   align-items: center;
   /* margin-right: 5.5rem; */
   cursor: pointer;
+`;
+
+const UserModal = styled.div`
+  width: 15rem;
+  height: 10rem;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 5rem;
+  right: 11rem;
+  border-radius: 1.5rem;
+  /* z-index: 2; */
+`;
+
+const UserModalBtn = styled.div`
+  width: 15rem;
+  height: 5rem;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 150ms ease-in-out;
+  transition: font-size 150ms ease-in-out;
+  cursor: pointer;
+  &:nth-child(1) {
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+  }
+  &:nth-child(2) {
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+  }
+  &:hover {
+    background-color: #dddddd;
+    opacity: 80%;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
 `;
 
 export default Hbutton;

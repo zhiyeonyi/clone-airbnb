@@ -19,6 +19,7 @@ const Wrap = styled.div`
   flex-direction: column;
   display: center;
   height: 100%;
+  width: 1440px;
 `;
 
 export default Main;

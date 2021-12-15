@@ -50,8 +50,8 @@ Button.defaultProps = {
 };
 
 const DefaultBtn = styled.button`
-  font-size: ${(props) => props.fontSize};
-  width: ${(props) => props.width};
+  widt
+  h: ${(props) => props.width};
   min-height: 48px;
   padding: ${(props) => props.padding};
   border: ${(props) => props.border};
@@ -64,6 +64,7 @@ const DefaultBtn = styled.button`
   text-align: center !important;
   line-height: 24px;
   cursor: point;
+  flex-grow: 1
   &:hover {
     background-color: #ebebeb;
     border: 2px solid #ebebeb;
