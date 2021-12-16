@@ -1,25 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import MainTop from "../components/MainTop";
-import LocalCtgr from "../components/LocalCtgr";
+import { useState } from "react";
 
 const Main = () => {
   return (
     <React.Fragment>
       <Wrap>
         <MainTop />
-        <LocalCtgr />
       </Wrap>
     </React.Fragment>
   );
 };
 
 const Wrap = styled.div`
-  justify-content: center;
   flex-direction: column;
-  display: center;
-  height: 100%;
-  width: 1440px;
+  height: 100vh;
+  width: 100vw;
 `;
 
 export default Main;
