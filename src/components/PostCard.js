@@ -8,31 +8,20 @@ import { AiFillStar } from "react-icons/ai";
 
 
 const PostCard = (props) => {
-  const[postCard, setPostCard] = useState()
-
-  const getCard = () => {
-    axios
-    .get("http://13.209.40.227/api/place/:locationId/list")
-    .then((response)=> {
-      setPostCard(response.data)
-      console.log(response)
-      console.log(response.data)
-    })
-  }
-
+ 
   return (
     <React.Fragment>
       <Card>
         <Line />
         <ImgTextBox>
-          <NemoImg src={Testimg} alt="" />
+          <NemoImg src={props.accomoImg} alt="" />
           <TextBox>
             <OnlyText>
-              <Text size="22px" margin="0">홍대accomoTitle</Text>
-              <Text size="15px" margin="10px 0px" color="gray">최대인원accomoContent</Text>
+              <Text size="22px" margin="0">{props.accomoTitle}</Text>
+              <Text size="15px" margin="10px 0px" color="gray">{props.accomoContent}</Text>
             </OnlyText>
             <Rate>
-              <Text margin="0"><AiFillStar size="15px"/>rate</Text>
+            <AiFillStar size="15px" color="#FF5A5E"/><Text margin="0">rate</Text>
             </Rate>
           </TextBox>
         </ImgTextBox>
@@ -82,7 +71,7 @@ const OnlyText =styled.div`
 `;
 
 const Rate = styled.div`
-  
+  display: flex;
 `;
 
 export default PostCard;

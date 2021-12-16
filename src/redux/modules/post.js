@@ -8,20 +8,31 @@ const GET_POST = "GET_POST";
 const getPost = createAction(GET_POST, (postList) => ({ postList }));
 // *** 초기값
 const initialState = {
-  postId: null,
-  userId: null,
-  locationId: null,
-  locationName: null,
-  accomoName: null,
-  commentId: null,
-  comment: null,
-  date: null,
-  rate: null,
+  
+    locationId : null,
+    locationName : null,
+    accomoId: null,
+    accomoTitle: null,
+    accomoContent: null,
+    accomoImg: null,
+    
 };
 // *** 미들웨어
 // 서울 페이지 PostList
-const getPostListDB = (postId) => {
-  return function (dispatch, getState, { history }) {};
+const getPostListDB = () => {
+  return function (dispatch, getState, { history }) {
+    const token = localStorage.getItem("user_token");
+
+    axios.get("http://13.209.40.227/api/place/:locationId/list", {
+      headers: { Authorization: token },
+    })
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log("에러", err)
+    })
+  };
 };
 // *** 리듀서
 export default handleActions(

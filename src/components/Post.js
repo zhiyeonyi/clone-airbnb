@@ -8,21 +8,31 @@ import { FiShare,FiHeart } from "react-icons/fi";
 import {AiOutlineHome} from "react-icons/ai";
 import {IoSparklesOutline, IoBedOutline} from "react-icons/io5";
 import {BsDoorOpen, BsBookmark} from "react-icons/bs";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const Post = (props) => {
+const Post = () => {
+  const[info,setInfo]=useState([])
+
+  useEffect(()=> {
+    axios
+    .get("http://13.209.40.227/api/place/:locationId/list/:accomoId")
+    .then(({data}) => setInfo(data));
+  });
+
   return (
     <React.Fragment>
       <Wrap>
         <Header>
-          <Text bold size="28px" margin="28px 0px 10px 0px">홍대의 당신의 아름다운 장기 렌탈집! (+ wifi에그) accommoTitle</Text>
+          <Text bold size="28px" margin="28px 0px 10px 0px">홍대의 당신의 아름다운 장기 렌탈집! (+ wifi에그) {info.accommoTitle}</Text>
           <RateLocation>
             <Text margin="0px 5px" size="14px">
-              <AiFillStar color="#FF385C"/>rate 슈퍼호스트 locationNam</Text> 
+              <AiFillStar color="#FF385C"/>rate 슈퍼호스트 {info.locationName}</Text> 
             <Text margin="0px 5px" size="14" bold>
             <FiShare/> 공유하기 <FiHeart/> 저장
             </Text>
             </RateLocation>  
-          <Image shape="rectangle" >accomoImg</Image>
+          <Image shape="rectangle" src={info.accmoImg}/>
         </Header>
 
         <Body>

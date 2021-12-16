@@ -3,15 +3,27 @@
 // *** 패키지 import
 import React from "react";
 import styled from "styled-components";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
+import { actionCreators as postActions} from "../redux/modules/post";
 // import Navigation from "../components/Navigation";
 import testImg from "../shared/images/redHeart.png";
 import Trophy from "../shared/images/trophy.svg";
 import BtnToBt from "../shared/images/btnToBottom.svg";
 import Filter from "../shared/images/filter.svg";
 import PostCard from "../components/PostCard";
+import Map from "../components/Map";
+import axios from "axios";
 
 const Seoul = () => {
+  const dispatch = useDispatch();
+  const[posts,setPosts]=useState([]);
+
+  useEffect(()=> {
+    dispatch(postActions.getPostListDB());
+  }, []);
+
   return (
     <React.Fragment>
       <Container>
@@ -67,9 +79,12 @@ const Seoul = () => {
                 평균적으로 이 숙소를 별 5개 만점에 4.7점으로 평가했습니다.
               </Fixedtxt>
             </Textarea>
-            <PostCard />
+            {posts.map((post,index)=> (
+              <PostCard key={index}/>
+            ))} 
+            
           </List>
-          <Map></Map>
+          <MapBox><Map/></MapBox>
         </ListMap>
       </Container>
     </React.Fragment>
@@ -130,14 +145,14 @@ const List = styled.div`
   background-color: white;
 `;
 
-const Map = styled.div`
+const MapBox = styled.div`
   width: 45vw;
   height: 80vh;
-  background-color: black;
+  /* background-color: black;
   background-image: url(${testImg});
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: center; */
 `;
 
 const Textarea = styled.div`
