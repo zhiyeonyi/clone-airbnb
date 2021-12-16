@@ -11,14 +11,17 @@ import { dropRight } from "lodash";
 
 
 
-
 const Navigation = () => {
+    const history = useHistory();
+
+
     return(
         <React.Fragment>
             <Wrap>
                 <Width>
-                    <Logo changeColor="#FF385C" />
-                    
+                    <Link to="/">
+                    <Logo changeColor="#FF385C"/>
+                    </Link>
                     <Middle>
                         <Button border= "1px solid #000000" >검색시작하기 <BiSearch color="#FF385C"/></Button>
                         {/* <Button></Button> */}
@@ -48,6 +51,7 @@ const Wrap = styled.div`
 const Width = styled.div`
     display: flex;
     justify-content: space-between;
+    /* margin: 20px 0px 0px 20px; */
 `;
 
 const Middle = styled.div`
@@ -55,6 +59,6 @@ const Middle = styled.div`
 
 const Right = styled.div`
     display: flex;
-    align-item: center;
+    align-items: center;;
 `;
 export default Navigation;

@@ -2,30 +2,83 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
+
 // *** 액션 타입
 const LOGIN = "user/LOGIN";
+const LOG_OUT = "LOG_OUT";
+
 // *** 액션 생성 함수
+const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const setLogin = createAction(LOGIN, (user) => ({ user }));
+
 // *** 초기값
 const initialState = {
-  user: null,
-  userId: null,
   email: null,
+  password: null,
+  passwordConfirm: null,
+  username: null,
   is_login: false,
+  user:null,
 };
-//회원가입//
-const registerDB = (userId, pw, pw_check, email) => {
-  return;
-  // function (dispatch, getState,{history}){
-  // // apis.signup(userId, pw, pw_check, email);
-  // alert(
-  //   "회원가입을 축하합니다.",
-  //   "로그인페이지로 이동합니다.",
-  //   "success"
-  // ).then(history.push("pages/Login"))
-  // }
-};
+
 // *** 미들웨어
+// 회원가입 
+const signUpDB = (userEmail, password, passwordConfirm, userName) => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .post("http://13.209.40.227/api/users/sign-up", {
+        userEmail: userEmail,
+        password: password,
+        passwordConfirm: passwordConfirm,
+        userName: userName,
+      })
+      .then((res) => {
+        console.log(res)
+        window.alert("회원가입 되셨습니다.");
+      })
+      .catch((err) => {
+        window.alert("이미 존재하는 아이디 또는 이메일입니다.");
+      });
+  };
+};
+
+// 로그인
+const loginDB = (userEmail, password) => {
+  return function (dispatch, getState, { history }) {
+    axios({method: "post", data: {
+      userEmail: userEmail,
+      password: password,
+    }, url: "http://13.209.40.227/api/users/sign-in"}) // 로그인 요청
+      .then((res) => {
+
+        const user_token = res.data.token ;
+
+        localStorage.setItem("user_token", user_token);
+        window.alert("로그인 되셨습니다.");
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err)
+        window.alert("아이디/비밀번호를 확인 해주세요");
+      });
+  };
+};
+
+// *** 로그아웃
+const logoutDB = () => {
+  return function (dispatch, getState, { history }) {
+    axios // 로그아웃
+      .get("http://13.209.40.227/api/logout")
+      .then((res) => {
+        dispatch(logOut());
+        console.log("로그아웃 성공");
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log("로그아웃 실패");
+      });
+  };
+};
 // *** 리듀서
 export default handleActions(
   {
@@ -39,6 +92,8 @@ export default handleActions(
 );
 // *** 액션 생성 함수 export
 const actionCreators = {
-  registerDB,
+  signUpDB,
+  loginDB,
+  logoutDB,
 };
 export { actionCreators };

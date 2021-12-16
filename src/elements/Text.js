@@ -1,8 +1,9 @@
 import React from "react";
+import { BiNoEntry } from "react-icons/bi";
 import styled from "styled-components";
 
 const Text = (props) => {
-  const { bold, color, size, children, margin, position, center } = props;
+  const { bold, color, size, children, margin, position, center,textDecoration } = props;
 
   const styles = {
     bold: bold,
@@ -11,6 +12,7 @@ const Text = (props) => {
     margin: margin,
     position: position,
     center: center,
+    textDecoration:textDecoration,
   };
   return <P {...styles}>{children}</P>;
 };
@@ -22,6 +24,7 @@ Text.defaultProps = {
   size: "14px",
   margin: false,
   position: "",
+  textDecoration: "",
 };
 
 const P = styled.p`
@@ -30,6 +33,7 @@ const P = styled.p`
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "600" : "400")};
   position: ${(props) => props.position};
+  textDecoration: ${(props) => props.textDecoration};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 `;
 

@@ -44,30 +44,28 @@ Button.defaultProps = {
   minHeight: "auto",
   padding: "10px 10px",
   border: "1px solid #ffffff",
-  borderRadius: "0px",
+  borderRadius: "40px",
   backGround: "#ffffff",
   _onClick: () => {},
 };
 
 const DefaultBtn = styled.button`
-  widt
-  h: ${(props) => props.width};
+  width: ${(props) => props.width};
   min-height: 48px;
   padding: ${(props) => props.padding};
   border: ${(props) => props.border};
-  border-radius: 8px;
+  border-radius: ${(props) => props.borderRadius};
   color: ${(props) => props.color};
   display: ${(props) => props.display};
   background-color: ${(props) => props.backGround};
   box-sizing: boder-box;
   margin: 8px auto;
-  text-align: center !important;
+  /* text-align: center !important; */
   line-height: 24px;
-  cursor: point;
-  flex-grow: 1
+  cursor: pointer;
+  flex-grow: 1;
   &:hover {
     background-color: #ebebeb;
-    border: 2px solid #ebebeb;
   }
 `;
 

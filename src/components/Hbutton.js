@@ -1,19 +1,23 @@
 import React from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
+import { actionCreators as modalActions } from "../redux/modules/modal";
+import { actionCreators as userActions } from "../redux/modules/user";
 
+import { useDispatch } from "react-redux";
 import { FaUserCircle } from "react-icons/fa";
 import { IoReorderThreeOutline } from "react-icons/io5";
 import "../shared/modal.css";
-import Signup from "../pages/Signup";
+import Signup from "../pages/Signup"; 
+import {AiOutlineLock} from "react-icons/ai";
 
 const Hbutton = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const user_token = localStorage.getItem("user_token") ? true : false; //토큰이 있으면
 
   // 각각의 모달 상태 관리 위한 변수 선언
   const [isFirstModal, setFirstModal] = React.useState(false); // First Modal
-  const [isSignModal, setSignModal] = React.useState(false); // Signup Modal
+  const [isSignModal, setSignModal] = React.useState(false); // Signup Modal  
   const [isLoginModal, setLoginModal] = React.useState(false); // Login Modal
   // const [isLoginModal, setLoginModal] = React.uuseState(false); // Login Modal
 
@@ -31,12 +35,21 @@ const Hbutton = () => {
   const firstModalOff = () => {
     setFirstModal(false);
   };
+
+  // 두번째 모달에 내려줄 함수 -> 함수를 내려줌으로써 자식 컴포넌트에서 부모 컴포넌트의 스태이트를 관리 할 수 있다.
+  const BtnStateOff = () => {
+    setSignModal(false);
+    setLoginModal(false);
+  }
+
   // 회원가입 모달 켜기, 첫번째 모달 끄기
   const SignupOn = () => {
-    isSignModal ? setSignModal(false) : setSignModal(true); // 이렇게 해준 이유는 두번째 모달창으로 넘어가고 나서 모달창을 껐다가 다시 킬때 이미 true로 되어있어서 버튼이 활성화 되질 않는다.
+    isSignModal ? setSignModal(false) : setSignModal(true);
     setLoginModal(false); // 회원가입 눌렀을때 로그인 값은 false로 넘겨주기위해
     setFirstModal(false);
+ 
   };
+
   // 로그인 모달 켜기, 첫번째 모달 끄기
   const LoginOn = () => {
     isLoginModal ? setLoginModal(false) : setLoginModal(true);
@@ -45,8 +58,8 @@ const Hbutton = () => {
   };
   // 로그아웃 버튼 클릭 시
   const logOut = () => {
-    // dispatch(userDB함수)
-    // localStorage.removeItem("user_token") 토큰 삭제
+    localStorage.removeItem("user_token") //  토큰 삭제
+    window.alert("로그아웃 하셨습니다.")
     window.location.reload();
   };
 
@@ -74,7 +87,7 @@ const Hbutton = () => {
           >
             <UserModal>
               <UserModalBtn onClick={logOut}>로그아웃</UserModalBtn>
-              <UserModalBtn>아이콘</UserModalBtn>
+              <UserModalBtn><AiOutlineLock size="22px"/> </UserModalBtn>
             </UserModal>
           </Modal>
         ) : (
@@ -110,7 +123,7 @@ const Hbutton = () => {
           </Modal>
         ))}
       {(isSignModal || isLoginModal) && (
-        <Signup _signStatus={isSignModal} _loginStatus={isLoginModal} />
+        <Signup _signStatus={isSignModal} _loginStatus={isLoginModal} BtnStateOff={BtnStateOff} />
       )}
     </>
   );

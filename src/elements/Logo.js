@@ -19,6 +19,7 @@ const Logo = (props) => {
 
 Logo.defaultProps = {
   chageColor: "#FF5A5E",
+
 };
 
 export default Logo;

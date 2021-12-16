@@ -14,7 +14,7 @@ import Signup from "../pages/Signup";
 import Seoul from "../pages/Seoul";
 import Detail from "../pages/Detail";
 import Navigation from "../components/Navigation";
-import Test from "../pages/ModalTest"; // 추후 삭제
+
 
 function App() {
   return (
@@ -27,7 +27,6 @@ function App() {
         <Route path="/signup" exact component={Signup}></Route>
         <Route path="/postList" exact component={Seoul}></Route>
         <Route path="/postList/:postId" exact component={Detail}></Route>
-        <Route path="/testyong" exact component={Test}></Route>
       </ConnectedRouter>
       </Wrap>
     </div>
@@ -35,8 +34,7 @@ function App() {
 }
 
 const Wrap = styled.div`
-  width: 100%;
-  max-width: 1440px
+  width: 1440;
   margin: auto;
 `
 
