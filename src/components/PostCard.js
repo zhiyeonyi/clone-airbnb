@@ -6,17 +6,16 @@ import { useState } from "react";
 import { Text } from "../elements";
 import { AiFillStar } from "react-icons/ai";
 
-
 const PostCard = (posts) => {
-  const roomList = posts.posts.roomList
-  console.log(roomList)
+  const roomList = posts.posts.roomList;
+  console.log(roomList);
 
   return (
     <React.Fragment>
       <Card>
         <Line />
         <ImgTextBox>
-          <NemoImg src={roomList.accomoImg} alt="" />
+          {/* <NemoImg src={roomList.accomoImg} alt="" />
           <TextBox>
             <OnlyText>
               <Text size="22px" margin="0">{roomList.accomoTitle}</Text>
@@ -27,7 +26,7 @@ const PostCard = (posts) => {
             <Rate>
             <AiFillStar size="15px" color="FF5A5E"/><Text margin="0">후기</Text>
             </Rate>
-          </TextBox>
+          </TextBox> */}
         </ImgTextBox>
       </Card>
     </React.Fragment>
@@ -51,8 +50,6 @@ const ImgTextBox = styled.div`
   height: 14em;
   background: red;
   display: flex;
-
-  
 `;
 
 const NemoImg = styled.img`
@@ -63,16 +60,14 @@ const NemoImg = styled.img`
 `;
 
 const TextBox = styled.div`
-height: 200px;
-margin: 0px 15px;
-display:flex;
-flex-direction:  column;
-justify-content: space-between;
+  height: 200px;
+  margin: 0px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
-const OnlyText =styled.div`
-
-`;
+const OnlyText = styled.div``;
 
 const Rate = styled.div`
   display: flex;
