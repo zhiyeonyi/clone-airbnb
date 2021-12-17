@@ -4,31 +4,40 @@
 import React from "react";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 
 import { actionCreators as postActions} from "../redux/modules/post";
-// import Navigation from "../components/Navigation";
+import Navigation from "../components/Navigation";
 import testImg from "../shared/images/redHeart.png";
 import Trophy from "../shared/images/trophy.svg";
 import BtnToBt from "../shared/images/btnToBottom.svg";
 import Filter from "../shared/images/filter.svg";
 import PostCard from "../components/PostCard";
-import Map from "../components/Map";
+import Googlemap from "../components/Map";
 import axios from "axios";
 
+
 const Seoul = () => {
+
   const dispatch = useDispatch();
-  const[posts,setPosts]=useState([]);
+  
+  const [posts, setPosts] = useState([])
 
   useEffect(()=> {
-    dispatch(postActions.getPostListDB());
+    axios
+    .get(`http://13.209.40.227/api/place/1/list/`)
+    .then ((response)=> {
+      console.log(response.data.roomList[0])
+      setPosts(response.data)
+    });
   }, []);
 
   return (
     <React.Fragment>
-      <Container>
+      <Container>  
         <Header>
-          <NaviPlace>{/* <Navigation /> */}</NaviPlace>
+          <NaviPlace><Navigation /></NaviPlace>
+          <Empty/>
           <BtnPlace>
             <HeaderBtn>
               요금
@@ -79,12 +88,11 @@ const Seoul = () => {
                 평균적으로 이 숙소를 별 5개 만점에 4.7점으로 평가했습니다.
               </Fixedtxt>
             </Textarea>
-            {posts.map((post,index)=> (
-              <PostCard key={index}/>
-            ))} 
+
+            <PostCard posts={posts} />
             
           </List>
-          <MapBox><Map/></MapBox>
+          <MapBox><Googlemap posts={posts}/></MapBox>
         </ListMap>
       </Container>
     </React.Fragment>
@@ -120,7 +128,14 @@ const Header = styled.header`
 const NaviPlace = styled.div`
   width: 100vw;
   height: 8vh;
+  position: fixed;
 `;
+const Empty = styled.div`
+  width: 100vw;
+  height:8vh;
+  background-color: white;
+`;
+
 const BtnPlace = styled.div`
   width: 100vw;
   height: 12vh;

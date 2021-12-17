@@ -8,7 +8,8 @@ const GET_POST = "GET_POST";
 const getPost = createAction(GET_POST, (postList) => ({ postList }));
 // *** 초기값
 const initialState = {
-  
+
+    list:[],
     locationId : null,
     locationName : null,
     accomoId: null,
@@ -19,11 +20,11 @@ const initialState = {
 };
 // *** 미들웨어
 // 서울 페이지 PostList
-const getPostListDB = () => {
+const getPostListDB = (locationId) => {
   return function (dispatch, getState, { history }) {
     const token = localStorage.getItem("user_token");
 
-    axios.get("http://13.209.40.227/api/place/:locationId/list", {
+    axios.get(`http://13.209.40.227/api/place/1/list`, {
       headers: { Authorization: token },
     })
     .then((res) => {

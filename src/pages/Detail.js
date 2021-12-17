@@ -4,17 +4,15 @@ import React from "react";
 import styled from "styled-components";
 import Navigation from "../components/Navigation";
 import Post from "../components/Post";
-import CommendWrite from "../components/Commend";
+import CommendWrite from "../components/CommentWrite";
 
 
 const Detail = (props) => {
   return (
     <React.Fragment>
       <Navigation/>
-      <Test/>
       <Post/>
       <CommendWrite/>
-
     </React.Fragment>
   );
 };

@@ -7,21 +7,25 @@ import { Text } from "../elements";
 import { AiFillStar } from "react-icons/ai";
 
 
-const PostCard = (props) => {
- 
+const PostCard = (posts) => {
+  const roomList = posts.posts.roomList
+  console.log(roomList)
+
   return (
     <React.Fragment>
       <Card>
         <Line />
         <ImgTextBox>
-          <NemoImg src={props.accomoImg} alt="" />
+          <NemoImg src={roomList.accomoImg} alt="" />
           <TextBox>
             <OnlyText>
-              <Text size="22px" margin="0">{props.accomoTitle}</Text>
-              <Text size="15px" margin="10px 0px" color="gray">{props.accomoContent}</Text>
+              <Text size="22px" margin="0">{roomList.accomoTitle}</Text>
+              <Text size="15px" margin="10px 0px" color="gray">{roomList.accomoInfo1}</Text>
+              <Text size="15px" margin="10px 0px" color="gray">{roomList.accomoInfo2}</Text>
+
             </OnlyText>
             <Rate>
-            <AiFillStar size="15px" color="#FF5A5E"/><Text margin="0">rate</Text>
+            <AiFillStar size="15px" color="FF5A5E"/><Text margin="0">후기</Text>
             </Rate>
           </TextBox>
         </ImgTextBox>

@@ -5,6 +5,7 @@ import { Text, Grid } from "./index";
 
 const Input = (props) => {
   const {
+    borderRadius,
     children,
     label,
     placeholder,
@@ -120,6 +121,7 @@ Input.defaultProps = {
   multiLine: false,
   rows: "",
   is_submit: false,
+  borderRadius: "10px",
   onSubmit: () => {},
   _onChange: () => {},
   _onBlur: () => {},
@@ -131,6 +133,7 @@ const ElInput = styled.input`
   ${(props) => (props.height ? `height : ${props.height};` : "")}
   padding: 12px 4px;
   box-sizing: border-box;
+  border-radius: ${(props) => props.borderRadius};
 `;
 
 const PlInput = styled.input`

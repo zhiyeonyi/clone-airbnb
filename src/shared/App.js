@@ -20,8 +20,8 @@ function App() {
   return (
     <div className="App">
       <Wrap>
-        {/* <Navigation/> */}
       <ConnectedRouter history={history}>
+      {/* <Navigation/> */}
         <Route path="/" exact component={Main}></Route>
         <Route path="/login" exact component={Login}></Route>
         <Route path="/signup" exact component={Signup}></Route>

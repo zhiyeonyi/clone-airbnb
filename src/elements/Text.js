@@ -33,7 +33,7 @@ const P = styled.p`
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "600" : "400")};
   position: ${(props) => props.position};
-  textDecoration: ${(props) => props.textDecoration};
+  text-decoration: ${(props) => props.textDecoration};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 `;
 

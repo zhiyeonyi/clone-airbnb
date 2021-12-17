@@ -12,34 +12,41 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Post = () => {
-  const[info,setInfo]=useState([])
+  const[info, setInfo]=useState("")
 
   useEffect(()=> {
     axios
-    .get("http://13.209.40.227/api/place/:locationId/list/:accomoId")
-    .then(({data}) => setInfo(data));
-  });
-
+    .get(`http://13.209.40.227/api/place/1/list/1`)
+    .then(response => setInfo(response.data.room));
+    // .then(response=> console.log(response.data.room))
+  },[]);
+  
+  
   return (
     <React.Fragment>
       <Wrap>
         <Header>
-          <Text bold size="28px" margin="28px 0px 10px 0px">홍대의 당신의 아름다운 장기 렌탈집! (+ wifi에그) {info.accommoTitle}</Text>
+          
+          <Text bold size="28px" margin="28px 0px 10px 0px">{info.accomoTitle}</Text>
           <RateLocation>
             <Text margin="0px 5px" size="14px">
-              <AiFillStar color="#FF385C"/>rate 슈퍼호스트 {info.locationName}</Text> 
+              <AiFillStar color="#FF385C"/>rate 슈퍼호스트 {info.accomoAdress}</Text> 
             <Text margin="0px 5px" size="14" bold>
             <FiShare/> 공유하기 <FiHeart/> 저장
             </Text>
-            </RateLocation>  
-          <Image shape="rectangle" src={info.accmoImg}/>
+            </RateLocation> 
+            <div style={{width: "200px", height: "200px"}}> 
+          <img style={{width: "100%"}} src={info.accomoImg} alt="이미지"/>
+          </div>
         </Header>
 
         <Body>
             <div className="hostinfo">  
                 <div className= "gle"> 
                     <Text bold margin="10px 0px" size="25px">PraiseCat님이 호스팅하는 공동 주택 전체</Text>
-                    <Text margin="0px" size="16px">accomoContent </Text>
+                    <Text margin="0px" size="16px">{info.accomoInfo1} </Text>
+                    <Text margin="0px" size="16px">{info.accomoInfo2} </Text>
+
                 </div>
                 <Image size="70" shape="circle"src="http://www.foodnmed.com/news/photo/201903/18296_3834_4319.jpg"></Image>
             </div>

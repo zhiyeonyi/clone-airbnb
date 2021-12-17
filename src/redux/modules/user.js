@@ -2,6 +2,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
+import { apis } from "../../shared/api";
 
 // *** 액션 타입
 const LOGIN = "user/LOGIN";
@@ -23,28 +24,42 @@ const initialState = {
 
 // *** 미들웨어
 // 회원가입 
-const signUpDB = (userEmail, password, passwordConfirm, userName) => {
+// const signUpDB = (userEmail, password, passwordConfirm, userName) => {
+//   return function (dispatch, getState, { history }) {
+//     axios
+//       .post("http://13.209.40.227/api/users/sign-up", {
+//         userEmail: userEmail,
+//         password: password,
+//         passwordConfirm: passwordConfirm,
+//         userName: userName,
+//       })
+//       .then((res) => {
+//         console.log(res)
+//         window.alert("회원가입 되셨습니다.");
+//       })
+//       .catch((err) => {
+//         window.alert("이미 존재하는 아이디 또는 이메일입니다.");
+//       });
+//   };
+// };
+
+const signUpDB = (userEmail, password, passwordConfirm, userName) =>  {
   return function (dispatch, getState, { history }) {
-    axios
-      .post("http://13.209.40.227/api/users/sign-up", {
-        userEmail: userEmail,
-        password: password,
-        passwordConfirm: passwordConfirm,
-        userName: userName,
-      })
+    apis
+      .signup(userEmail, password, passwordConfirm, userName)
       .then((res) => {
-        console.log(res)
         window.alert("회원가입 되셨습니다.");
       })
       .catch((err) => {
-        window.alert("이미 존재하는 아이디 또는 이메일입니다.");
+        alert(err.response);
+        console.log(err.response)
       });
   };
 };
 
 // 로그인
 const loginDB = (userEmail, password) => {
-  return function (dispatch, getState, { history }) {
+  return  function (dispatch, getState, { history }) {
     axios({method: "post", data: {
       userEmail: userEmail,
       password: password,

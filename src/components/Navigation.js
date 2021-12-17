@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Button, Text } from "../elements";
 import Hbutton from "./Hbutton";
 import Logo from "../elements/Logo";
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { Link,} from "react-router-dom";
 import { HiOutlineGlobeAlt } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 
@@ -12,18 +12,17 @@ import { dropRight } from "lodash";
 
 
 const Navigation = () => {
-    const history = useHistory();
 
 
     return(
         <React.Fragment>
             <Wrap>
                 <Width>
-                    <Link to="/">
-                    <Logo changeColor="#FF385C"/>
+                    <Link to="/" style={{display:"flex", alignItems: "center"}}>
+                    <Logo changeColor="#FF385C" />
                     </Link>
                     <Middle>
-                        <Button border= "1px solid #000000" >검색시작하기 <BiSearch color="#FF385C"/></Button>
+                        <Button border= "1px solid #000000" >검색시작하기 <BiSearch color="black"/></Button>
                         {/* <Button></Button> */}
                     </Middle>
 
@@ -39,7 +38,6 @@ const Navigation = () => {
 }
 
 const Wrap = styled.div`
-    position: fixed;
     z-index: 999;
     top: 0;
     left: 0;
@@ -55,7 +53,10 @@ const Width = styled.div`
 `;
 
 const Middle = styled.div`
+
 `;
+    
+
 
 const Right = styled.div`
     display: flex;

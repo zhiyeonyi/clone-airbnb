@@ -18,7 +18,7 @@ const MainTop = () => {
     setScrollY(window.pageYOffset)
   }
   useEffect(()=> {
-    scrollY>30 &&console.log('30')
+    scrollY>50 &&console.log('50보다 밑으로~')
   }, [scrollY]);
 
   useEffect(()=> {
@@ -36,42 +36,45 @@ const MainTop = () => {
       <Total>
       <FirstWrap>
         <Whole>
-          <Warning>
-            <a
-              style={{ color: "white" , textAlign:"center"}}
-              href="https://www.airbnb.co.kr/d/covidsafety"
-            >
-              에어비앤비의 코로나19 대응 방안에 대한 최신 정보를 확인하세요.
-            </a>
-          </Warning>
+          {scrollY <50? (
+          <div >
+            <Warning>
+              <a
+                style={{ color: "white" , textAlign:"center"}}
+                href="https://www.airbnb.co.kr/d/covidsafety"
+              >
+                에어비앤비의 코로나19 대응 방안에 대한 최신 정보를 확인하세요.
+              </a>
+            </Warning>
 
-          <MiddleWrap>
-            <Link to="/" style={{ display: "flex" }}>
-              <Logo changeColor="white" />
-            </Link>
+            <MiddleWrap>
+              <Link to="/" style={{ display: "flex" }}>
+                <Logo changeColor="white" />
+              </Link>
 
-            <div className="middle">
-              <span>숙소</span>
-              <span>체험</span>
-              <span>온라인 체험</span>
-            </div>
+              <div className="middle">
+                <span>숙소</span>
+                <span>체험</span>
+                <span>온라인 체험</span>
+              </div>
 
-            <UserInfo>
-              <Text color="#fff">호스트 되기</Text>
-              <HiOutlineGlobeAlt size="16px" color="white"/>
-              <Hbutton></Hbutton>
-            </UserInfo>
-          </MiddleWrap>
-        
-          <SearchBtn>
-            <div className= "searchbtn">
-            <Button margin="0" borderRadius="40px 0px 0px 40px">위치 <br/> 어디로 여행가세요?</Button>
-            <Button borderRadius="0">채크인<br/> 날짜 입력</Button>
-            <Button borderRadius="0">체크아웃<br/>날짜 입력</Button>
-            <Button borderRadius="0px 40px 40px 0px">인원<br/>게스트추가</Button>
-            </div>
-          </SearchBtn>  
+              <UserInfo>
+                <Text color="#fff">호스트 되기</Text>
+                <HiOutlineGlobeAlt size="16px" color="white"/>
+                <Hbutton></Hbutton>
+              </UserInfo>
+            </MiddleWrap>
           
+            <SearchBtn>
+              <div className= "searchbtn">
+              <Button margin="0" borderRadius="40px 0px 0px 40px">위치 <br/> 어디로 여행가세요?</Button>
+              <Button borderRadius="0">채크인<br/> 날짜 입력</Button>
+              <Button borderRadius="0">체크아웃<br/>날짜 입력</Button>
+              <Button borderRadius="0px 40px 40px 0px">인원<br/>게스트추가</Button>
+              </div>
+            </SearchBtn>  
+          </div>): (<div styled={{position: 'fixed', top:0,}} ><Navigation/></div>)}
+
           <LastWrap>
             <div className="bigimage">
               <Text size="48px" bold color="#fff" center>
