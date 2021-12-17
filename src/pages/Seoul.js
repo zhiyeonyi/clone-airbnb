@@ -28,10 +28,11 @@ const Seoul = () => {
     .get(`http://13.209.40.227/api/place/1/list/`)
     .then ((response)=> {
       console.log(response.data.roomList[0])
-      setPosts(response.data)
+      setPosts(response.data.roomList)
     });
   }, []);
 
+    console.log(posts);
   return (
     <React.Fragment>
       <Container>  
@@ -89,7 +90,16 @@ const Seoul = () => {
               </Fixedtxt>
             </Textarea>
 
-            <PostCard posts={posts} />
+            {posts.map((post, key) => {
+              // accomoImg, accomoInfo1 , accomoInfo2 , accomoTitle, 
+              const accomoImg = post.accomoImg;
+              const accomoInfo1 = post.accomoInfo1;
+
+              return (
+                // <PostCard accomoImg={accomoImg} accomoInfo1={accomoInfo1} accomoInfo2={post.accomoInfo2} accomoTitle={post.accomoTitle} />
+                <PostCard posts={post} />
+              )
+            })}
             
           </List>
           <MapBox><Googlemap posts={posts}/></MapBox>

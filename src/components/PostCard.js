@@ -8,8 +8,10 @@ import { AiFillStar } from "react-icons/ai";
 
 
 const PostCard = (posts) => {
-  const roomList = posts.posts.roomList
+  console.log(posts);
+  const roomList = posts.posts;
   console.log(roomList)
+
 
   return (
     <React.Fragment>
@@ -25,7 +27,7 @@ const PostCard = (posts) => {
 
             </OnlyText>
             <Rate>
-            <AiFillStar size="15px" color="FF5A5E"/><Text margin="0">후기</Text>
+            <AiFillStar size="15px" color="FF5A5E"/><Text margin="0"> 4.8 (후기)</Text>
             </Rate>
           </TextBox>
         </ImgTextBox>
@@ -38,7 +40,6 @@ const Card = styled.div`
   width: 40em;
   height: 15em;
   margin: 4px 100px 0px 26px;
-  background-color: green;
 `;
 const Line = styled.hr`
   margin: 5px 14px 26px 0px;
@@ -49,7 +50,6 @@ const Line = styled.hr`
 const ImgTextBox = styled.div`
   width: 48em;
   height: 14em;
-  background: red;
   display: flex;
 
   
