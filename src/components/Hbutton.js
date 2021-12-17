@@ -62,6 +62,7 @@ const Hbutton = () => {
     window.alert("로그아웃 하셨습니다.")
     window.location.reload();
   };
+  
 
   return (
     <>
