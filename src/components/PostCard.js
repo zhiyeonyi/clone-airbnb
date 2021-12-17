@@ -5,17 +5,20 @@ import Testimg from "../shared/images/쿵이.png";
 import { useState } from "react";
 import { Text } from "../elements";
 import { AiFillStar } from "react-icons/ai";
-
+import { useHistory } from "react-router";
 
 const PostCard = (posts) => {
-  console.log(posts);
+  const history = useHistory();
   const roomList = posts.posts;
-  console.log(roomList)
+  console.log(roomList);
 
+  const onC=()=> {
+    history.push(`/postList/${roomList.accomoId}`);
+  };
 
   return (
     <React.Fragment>
-      <Card>
+      <Card onClick={onC}>
         <Line />
         <ImgTextBox>
           <NemoImg src={roomList.accomoImg} alt="" />
@@ -40,6 +43,7 @@ const Card = styled.div`
   width: 40em;
   height: 15em;
   margin: 4px 100px 0px 26px;
+  cursor: pointer;
 `;
 const Line = styled.hr`
   margin: 5px 14px 26px 0px;

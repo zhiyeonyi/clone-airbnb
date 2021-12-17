@@ -38,8 +38,24 @@ export const apis = {
       password: password,
       passwordConfirm: passwordConfirm,
       userName: userName,
-    }),
+    }
+  ),
 
+  //comment
+ //댓글//
+ addComment: (accomoId, userName, commentContent) =>
+    instance.post(`/api/posting/${accomoId}/comment`, {
+      accomoId: accomoId,
+      commentContent: commentContent,
+      userName:userName,
+    }
+  ),
+  delComment: (accomoId, commentId) =>
+  instance.delete(`/api/posting/${accomoId}/comment/${commentId}`),
+  editComment: (accomoId, commentId, content) =>
+  instance.put(`/api/posting/${accomoId}/comment/${commentId}`, { content }),  
 
 
 };
+
+

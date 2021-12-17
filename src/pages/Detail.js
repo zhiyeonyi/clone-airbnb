@@ -4,23 +4,24 @@ import React from "react";
 import styled from "styled-components";
 import Navigation from "../components/Navigation";
 import Post from "../components/Post";
-import CommendWrite from "../components/CommentWrite";
-
+import CommentWrite from "../components/CommentWrite";
+import CommentList from "../components/CommentList";
 
 const Detail = (props) => {
   return (
     <React.Fragment>
-      <Navigation/>
-      <Post/>
-      <CommendWrite/>
+        <Test>
+        <Navigation/>
+        <Post/>
+        <CommentWrite/>
+        <CommentList/>
+      </Test>
     </React.Fragment>
   );
 };
 
 const Test = styled.div`
-  width: 100vw;
-  height: 8vh;
-  background-color: skyblue;
+  padding: 0 11vw;
 `;
 
 

@@ -15,10 +15,11 @@ import Filter from "../shared/images/filter.svg";
 import PostCard from "../components/PostCard";
 import Googlemap from "../components/Map";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 
 const Seoul = () => {
-
+  const history = useHistory();
   const dispatch = useDispatch();
   
   const [posts, setPosts] = useState([])
@@ -27,17 +28,17 @@ const Seoul = () => {
     axios
     .get(`http://13.209.40.227/api/place/1/list/`)
     .then ((response)=> {
-      console.log(response.data.roomList[0])
+      console.log(response.data.roomList)
       setPosts(response.data.roomList)
     });
   }, []);
 
-    console.log(posts);
+    // console.log(posts);
   return (
     <React.Fragment>
       <Container>  
         <Header>
-          <NaviPlace><Navigation /></NaviPlace>
+          <NaviPlace><Navigation/></NaviPlace>
           <Empty/>
           <BtnPlace>
             <HeaderBtn>
@@ -71,12 +72,12 @@ const Seoul = () => {
         </Header>
         <ListMap>
           <List>
-            <Textarea>
+            <Textarea >
               <Fixedtxt style={{ marginTop: "24px" }}>
                 지도에 표시된 지역에 위치한 300개 이상의 숙소
               </Fixedtxt>
             </Textarea>
-            <Textarea>
+            <Textarea >
               <p style={{ marginTop: "10px", fontSize: "14px", color: "gray" }}>
                 여행 날짜와 게스트 인원수를 입력하면 1박당 총 요금을 확인할 수
                 있습니다.
@@ -92,12 +93,13 @@ const Seoul = () => {
 
             {posts.map((post, key) => {
               // accomoImg, accomoInfo1 , accomoInfo2 , accomoTitle, 
-              const accomoImg = post.accomoImg;
-              const accomoInfo1 = post.accomoInfo1;
+              // const accomoImg = post.accomoImg;
+              // const accomoInfo1 = post.accomoInfo1;
+             
 
               return (
                 // <PostCard accomoImg={accomoImg} accomoInfo1={accomoInfo1} accomoInfo2={post.accomoInfo2} accomoTitle={post.accomoTitle} />
-                <PostCard posts={post} />
+                <PostCard key={key} posts={post} />
               )
             })}
             
@@ -161,13 +163,11 @@ const ListMap = styled.div`
   /* display: flex-start; */
   width: 100vw;
   height: 80vh;
-  background-color: yellow;
 `;
 
 const List = styled.div`
   width: 55vw;
   height: 80vh;
-  background-color: white;
 `;
 
 const MapBox = styled.div`

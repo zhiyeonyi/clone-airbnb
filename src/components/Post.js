@@ -26,18 +26,17 @@ const Post = () => {
     <React.Fragment>
       <Wrap>
         <Header>
-          
           <Text bold size="28px" margin="28px 0px 10px 0px">{info.accomoTitle}</Text>
           <RateLocation>
-            <Text margin="0px 5px" size="14px">
+            <Text margin="0px 5px" size="15px">
               <AiFillStar color="#FF385C"/>rate 슈퍼호스트 {info.accomoAdress}</Text> 
             <Text margin="0px 5px" size="14" bold>
             <FiShare/> 공유하기 <FiHeart/> 저장
             </Text>
             </RateLocation> 
-            <div style={{width: "200px", height: "200px"}}> 
-          <img style={{width: "100%"}} src={info.accomoImg} alt="이미지"/>
-          </div>
+          <AccomoImg>
+            <img className="acimg" style={{width: "45vw" }} src={info.accomoImg} alt="이미지"/>
+          </AccomoImg>
         </Header>
 
         <Body>
@@ -111,22 +110,22 @@ const Post = () => {
 
 
 const Wrap = styled.div`
+  border-top: 1px solid gray
   display: flex;
   flex-direction: column;
-  min-width: 100vw;
-  min-height: 100vh;  
+  min-width: 80vw;
+  /* min-height: 100vh;   */
   box-sizing: border-box;
 `;
 
 const Header = styled.div`
-  width: 100vw;
+  width: 80vw;
   height: 75vh;
   
 `;
 
 const Body = styled.div`
-  width: 100vw;
-  height: 100vw;
+  width: 80vw;
   border-bottom: 0.2px solid lightgray;
 
   .hostinfo {
@@ -136,6 +135,13 @@ const Body = styled.div`
 
   }
   
+`;
+
+const AccomoImg = styled.div`
+  margin: 2vw 0;
+
+  .acimg{
+    border-radius: 20px;
 `;
 
 const HowTo = styled.div`
@@ -155,6 +161,7 @@ const Explain = styled.div`
 
 const Bed = styled.div`
     display:flex;
+    margin: 0 0 3vw 0;
 
     .bed{
     border: 1px solid lightgray;

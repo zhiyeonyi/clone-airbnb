@@ -43,7 +43,8 @@ const Wrap = styled.div`
     left: 0;
     right: 0;
     margin: auto;
-    background-color: #fff
+    background-color: white;
+    border-bottom: lightgray;
 `;
 
 const Width = styled.div`

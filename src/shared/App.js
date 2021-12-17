@@ -26,7 +26,7 @@ function App() {
         <Route path="/login" exact component={Login}></Route>
         <Route path="/signup" exact component={Signup}></Route>
         <Route path="/postList" exact component={Seoul}></Route>
-        <Route path="/postList/:postId" exact component={Detail}></Route>
+        <Route path="/postList/:acoomoId" exact component={Detail}></Route>
       </ConnectedRouter>
       </Wrap>
     </div>
