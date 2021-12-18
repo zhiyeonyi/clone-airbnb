@@ -56,6 +56,7 @@ const CommentItem = (props) => {
                 <Box>
                     <Text margin="5px" padding="0"bold>{userName} </Text>
                     <Text margin="5px" padding="0"> {commentContent}</Text>
+                    <DeleteBtn/>
                 </Box>
             </Grid>    
         </React.Fragment>
