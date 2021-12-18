@@ -7,19 +7,20 @@ import { apis } from "../../shared/api";
 // *** 액션 타입
 const LOGIN = "user/LOGIN";
 const LOG_OUT = "LOG_OUT";
-
+const SET_USER = "SET_USET"
 // *** 액션 생성 함수
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const setLogin = createAction(LOGIN, (user) => ({ user }));
+const setUser = createAction(SET_USER, (userEmail, password, passwordConfirm, userName) => ({userEmail, password, passwordConfirm, userName}))
 
 // *** 초기값
 const initialState = {
-  email: null,
+  userEmail: null,
   password: null,
   passwordConfirm: null,
-  username: null,
+  userName: null,
   is_login: false,
-  user:null,
+  userId: null,
 };
 
 // *** 미들웨어
@@ -48,6 +49,7 @@ const signUpDB = (userEmail, password, passwordConfirm, userName) =>  {
     apis
       .signup(userEmail, password, passwordConfirm, userName)
       .then((res) => {
+        dispatch(setUser(userEmail, password, passwordConfirm, userName))
         window.alert("회원가입 되셨습니다.");
       })
       .catch((err) => {
@@ -66,8 +68,8 @@ const loginDB = (userEmail, password) => {
     }, url: "http://13.209.40.227/api/users/sign-in"}) // 로그인 요청
       .then((res) => {
 
-        const user_token = res.data.token ;
-
+        const user_token = res.data.token;
+        dispatch(setLogin(res.data.userId))
         localStorage.setItem("user_token", user_token);
         window.alert("로그인 되셨습니다.");
         window.location.reload();
@@ -99,9 +101,16 @@ export default handleActions(
   {
     [LOGIN]: (state, action) =>
       produce(state, (draft) => {
-        draft.user = action.payload.user;
-        draft.is_login = false;
+        draft.userId = action.payload.userId;
+        draft.is_login = true;
       }),
+    [SET_USER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.userEmail = action.payload.userEmail;
+        draft.password = action.payload.password;
+        draft.passwordConfirm = action.payload.passwordConfirm;
+        draft.userName = action.payload.userName;
+      })
   },
   initialState
 );
