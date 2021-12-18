@@ -10,8 +10,10 @@ import { IoReorderThreeOutline } from "react-icons/io5";
 import "../shared/modal.css";
 import Signup from "../pages/Signup"; 
 import {AiOutlineLock} from "react-icons/ai";
+import { useHistory } from "react-router";
 
 const Hbutton = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const user_token = localStorage.getItem("user_token") ? true : false; //토큰이 있으면
 
@@ -60,7 +62,7 @@ const Hbutton = () => {
   const logOut = () => {
     localStorage.removeItem("user_token") //  토큰 삭제
     window.alert("로그아웃 하셨습니다.")
-    window.location.reload();
+    history.push("/")
   };
   
 

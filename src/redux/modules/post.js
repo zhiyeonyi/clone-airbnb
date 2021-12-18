@@ -16,11 +16,15 @@ const initialState = {
     accomoTitle: null,
     accomoContent: null,
     accomoImg: null,
+    accomoAdress: null,
+    accomoInfo1: null,
+    accomoInfo2: null,
     
 };
+
 // *** 미들웨어
 // 서울 페이지 PostList
-const getPostListDB = (locationId) => {
+const getPostListDB = () => {
   return function (dispatch, getState, { history }) {
     const token = localStorage.getItem("user_token");
 
@@ -29,6 +33,7 @@ const getPostListDB = (locationId) => {
     })
     .then((res) => {
       console.log(res)
+      dispatch(getPost(res.data))
     })
     .catch((err) => {
       console.log("에러", err)
@@ -42,7 +47,14 @@ export default handleActions(
       return produce(state, (draft) => {
         draft.locationId = action.payload.locationId;
         draft.locationName = action.payload.locationName;
-        console.log(action.payload.locationId);
+        draft.accomoId = action.payload.accomoId;
+        draft.accomoTitle = action.payload.accomoTitle;
+        draft.accomoContent = action.payload.accomoContent;
+        draft.accomoImg = action.payload.accomoImg;
+        draft.accomoAdress = action.payload.accomoAdress;
+        draft.accomoInfo1 = action.payload.accomoInfo1;
+        draft.accomoInfo2 = action.payload.accomoInfo2;
+        // console.log(action.payload.locationId);
       });
     },
   },

@@ -41,6 +41,9 @@ export const apis = {
     }
   ),
 
+  //상세페이지 뷰
+  getDetail: (locationId,accomoId) => instance.get(`api/place/${locationId}/list/${accomoId}`),
+
   //comment
  //댓글//
  addComment: (accomoId, userName, commentContent) =>

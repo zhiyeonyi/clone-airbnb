@@ -10,6 +10,7 @@ import { useHistory } from "react-router";
 const PostCard = (posts) => {
   const history = useHistory();
   const roomList = posts.posts;
+  console.log(posts)
   console.log(roomList);
 
   const onC=()=> {
@@ -18,7 +19,7 @@ const PostCard = (posts) => {
 
   return (
     <React.Fragment>
-      <Card onClick={onC}>
+      <Card roomList={roomList} onClick={onC}>
         <Line />
         <ImgTextBox>
           <NemoImg src={roomList.accomoImg} alt="" />

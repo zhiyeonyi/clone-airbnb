@@ -184,7 +184,9 @@ const Signup = (props) => {
               top: "4.2em",
               bottom: "2.5em",
             },
-            overlay: {},
+            overlay: {
+              backgroundColor: "none",
+            },
           }}
         >
           <Agrid>
@@ -282,7 +284,9 @@ const Signup = (props) => {
               width: "35%",
               padding: "20px 27px",
             },
-            overlay: {},
+            overlay: {
+              backgroundColor: "none",
+            },
           }}
         >
           <Agrid>

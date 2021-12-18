@@ -4,6 +4,8 @@ import Modal from "react-modal"
 import PostCard from "./PostCard";
 import ModalOfMap from "./ModalOfMap";
 
+
+
 const Googlemap = (posts) => {
 
   const [modal, setModal] = React.useState(false)

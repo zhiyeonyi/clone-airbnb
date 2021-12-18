@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import Hbutton from "./Hbutton";
 
 const MainTop = () => {
+  const history = useHistory()
   const [scrollY, setScrollY] = useState(0)
   const handleFollow = () => {
     setScrollY(window.pageYOffset)
@@ -73,7 +74,7 @@ const MainTop = () => {
               <Button borderRadius="0px 40px 40px 0px">인원<br/>게스트추가</Button>
               </div>
             </SearchBtn>  
-          </div>): (<div styled={{position: 'fixed', top:0,}} ><Navigation/></div>)}
+          </div>): (<Navi  ><Navigation/></Navi>)}
 
           <LastWrap>
             <div className="bigimage">
@@ -92,7 +93,7 @@ const MainTop = () => {
           설레는 다음 여행을 위한 아이디어
         </Text>
         <Wrap>
-          <Card>
+          <Card onClick={() => {history.push("/postlist")}}>
             <Image
               br="15px 15px 0px 0px"
               shape="rectangle"
@@ -259,7 +260,11 @@ const SearchBtn =styled.div`
 
 `;
 
-
+const Navi=styled.div`
+  position:fixed;
+  top:0;
+  width: 92vw;
+`;
 
 const LastWrap = styled.div`
   display:flex;

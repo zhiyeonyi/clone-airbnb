@@ -24,16 +24,53 @@ const initialState={
 }
 
 //thunk
-export const addCommentDB = (accomoId, userId, userName, commentContent,rating) => {
-    return function(dispatch, getState,{history}) {
-        apis.addComment(accomoId,userName,commentContent)
-        .then((res) => {
-           console.log(res)
-           history.replace(`/`)
-           window.alert("후기가 등록되었습니다.");
-          })
-    }
-}
+// export const addCommentDB = (accomoId, userId, userName, commentContent) => {
+//     return function(dispatch, getState,{history}) {
+//         apis.addComment(accomoId, userId, userName, commentContent)
+//         .then((res) => {
+//            console.log(res)
+//            history.replace(`/`)
+//            window.alert("후기가 등록되었습니다.");
+//           })
+//     }
+// }
+
+const addCommentDB = (accomoId, userId, userName, commentContent) => {
+  return function (dispatch, getState, { history }) {
+    const token = localStorage.getItem("user_token");
+    console.log(accomoId, userId, userName, commentContent)
+ 
+    axios.post(`http://13.209.40.227/api/${accomoId}/comments`, {
+      accomoId: accomoId, userId: userId, userName: userName, commentContent: commentContent
+    },{
+      headers: { authorization: "Bearer " + token },
+    } )
+    .then((res) => {
+      console.log(res)
+      // dispatch(getComment(accomoId))
+    })
+    .catch((err) => {
+      console.log("에러", err)
+    })
+  };
+};
+
+// const getComment = (accomoId) => {
+//   return function (dispatch, getState, { history }) {
+//     const token = localStorage.getItem("user_token");
+//     axios
+//     .get(`http://13.209.40.227/api/place/1/list/${accomoId}`,{
+//       headers: { authorization: "Bearer " + token },
+//     } )
+//     .then((res) => {
+//       console.log(res)
+//     })
+//     .catch((err) => {
+//       console.log("에러", err)
+//     })
+//   };
+// };
+
 
 export const delCommentDB = (accomoId, commentId) => {
   return function(dispatch, getState, { history }){
@@ -43,6 +80,22 @@ export const delCommentDB = (accomoId, commentId) => {
       window.alert("삭제가 완료되었습니다.")
       window.location.reload();
     });
+  };
+};
+
+const getUserInfoDB = () => {
+  return function (dispatch, getState, { history }) {
+    const token = localStorage.getItem("user_token");
+
+    axios.get(`http://13.209.40.227/api/users/me`, {
+      headers: { Authorization: token },
+    })
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log("에러", err)
+    })
   };
 };
 
@@ -62,4 +115,5 @@ export default handleActions(
 export const actionCreators = {
   addCommentDB,
   delCommentDB,
+  getUserInfoDB,
 };

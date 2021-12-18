@@ -36,10 +36,10 @@ const Seoul = () => {
     // console.log(posts);
   return (
     <React.Fragment>
-      <Container>  
+      <Container>   
         <Header>
           <NaviPlace><Navigation/></NaviPlace>
-          <Empty/>
+        
           <BtnPlace>
             <HeaderBtn>
               요금
@@ -111,7 +111,7 @@ const Seoul = () => {
   );
 };
 
-// 내 맵 API 키 : AIzaSyBWJ7dHELrTsWcsWBbjDVTehz0bfIQvNns
+
 {
   /* <img src={testImg} className='App-logo' alt='' /> */
 }
@@ -140,7 +140,6 @@ const Header = styled.header`
 const NaviPlace = styled.div`
   width: 100vw;
   height: 8vh;
-  position: fixed;
 `;
 const Empty = styled.div`
   width: 100vw;

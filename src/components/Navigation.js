@@ -6,21 +6,22 @@ import Logo from "../elements/Logo";
 import { Link,} from "react-router-dom";
 import { HiOutlineGlobeAlt } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
-
+import { useHistory } from "react-router";
 import { dropRight } from "lodash";
 
 
 
 const Navigation = () => {
+    const history = useHistory()
 
 
     return(
         <React.Fragment>
             <Wrap>
                 <Width>
-                    <Link to="/" style={{display:"flex", alignItems: "center"}}>
+                    <AirbnbLogo onClick={()=>{history.push('/')}}>
                     <Logo changeColor="#FF385C" />
-                    </Link>
+                    </AirbnbLogo>
                     <Middle>
                         <Button border= "1px solid #000000" >검색시작하기 <BiSearch color="black"/></Button>
                         {/* <Button></Button> */}
@@ -57,6 +58,10 @@ const Middle = styled.div`
 
 `;
     
+const AirbnbLogo = styled.div`
+ display:"flex";
+ align-items: "center"
+`
 
 
 const Right = styled.div`

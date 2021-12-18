@@ -5,6 +5,7 @@ import { Text, Grid } from "./index";
 
 const Input = (props) => {
   const {
+    maxLength,
     borderRadius,
     children,
     label,
@@ -30,6 +31,7 @@ const Input = (props) => {
           placeholder={placeholder}
           onKeyUp={_onKeyUp}
           onChange={_onChange}
+          maxLength={maxLength}
         >
           {children}
         </ElTextarea>
@@ -46,6 +48,7 @@ const Input = (props) => {
           placeholder={placeholder}
           onKeyUp={_onKeyUp}
           onChange={_onChange}
+          maxLength={maxLength}
         >
           {children}
         </PTextarea>
@@ -64,6 +67,7 @@ const Input = (props) => {
             onKeyUp={_onKeyUp}
             onChange={_onChange}
             value={value}
+            maxLength={maxLength}
             onKeyPress={(e) => {
               if (e.key === "Enter") {
                 onSubmit(e);
@@ -76,6 +80,7 @@ const Input = (props) => {
             placeholder={placeholder}
             onChange={_onChange}
             onKeyUp={_onKeyUp}
+            maxLength={maxLength}
           />
         )}
       </>
@@ -88,6 +93,7 @@ const Input = (props) => {
         {label && <Text margin="0px">{label}</Text>}
         {is_submit ? (
           <ElInput
+          maxLength={maxLength}
             type={type}
             placeholder={placeholder}
             onKeyUp={_onKeyUp}
@@ -105,6 +111,7 @@ const Input = (props) => {
             placeholder={placeholder}
             onChange={_onChange}
             onKeyUp={_onKeyUp}
+            maxLength={maxLength}
           />
         )}
       </>
@@ -113,6 +120,7 @@ const Input = (props) => {
 };
 
 Input.defaultProps = {
+  maxLength: null,
   children: null,
   label: false,
   placeholder: "텍스트를 입력해주세요.",

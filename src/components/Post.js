@@ -10,18 +10,24 @@ import {IoSparklesOutline, IoBedOutline} from "react-icons/io5";
 import {BsDoorOpen, BsBookmark} from "react-icons/bs";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
+import { actionCreators as postActions } from "../redux/modules/post";
 
-const Post = () => {
+const Post = (props) => {
+  const { accomoId } = useParams();
+  const dispatch = useDispatch()
+  
   const[info, setInfo]=useState("")
 
   useEffect(()=> {
     axios
-    .get(`http://13.209.40.227/api/place/1/list/1`)
+    .get(`http://13.209.40.227/api/place/1/list/${accomoId}`)
     .then(response => setInfo(response.data.room));
-    // .then(response=> console.log(response.data.room))
+    // // .then(response=> console.log(response.data.room))
   },[]);
-  
-  
+
+
   return (
     <React.Fragment>
       <Wrap>
