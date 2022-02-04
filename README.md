@@ -32,23 +32,7 @@ Airbnb 클론코딩 : http://zhiyeonyi.shop.s3-website.ap-northeast-2.amazonaws.
 <img src="https://camo.githubusercontent.com/5148c757ec30584083d0dc8c25ee75363e4bc37a55889b989e864549f6b08132/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6769746875622d3138313731373f7374796c653d666c6174266c6f676f3d676974687562266c6f676f436f6c6f723d7768697465"/>
 <img src="https://camo.githubusercontent.com/770f4d88e664a125e7d37ae6454a96da68e906c830eef44caeb59f0e56c2d8cf/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6769742d4630353033323f7374796c653d666c6174266c6f676f3d676974266c6f676f436f6c6f723d7768697465"/>
 
-# 3. 🎞 프로젝트 시연 영상 🎞
-
-![Hnet-image](https://user-images.githubusercontent.com/92702096/145673393-0f6c5102-62c3-4946-b6f0-3bd9ed739bd4.gif)
-<br/>
-
-[시연영상 바로가기](http://ohyo.shop.s3-website.ap-northeast-2.amazonaws.com)
-
-[홈페이지 바로가기](http://ohyo.shop.s3-website.ap-northeast-2.amazonaws.com)
-
-[와이어프레임](https://ovenapp.io/project/yBmVvSyjqJe0Nsgq1Vi0ZbalbHAH23MP#n3kas)
-</br>
-</br>
-</br>
-
-## ⚙ 주요 기능 ⚙
-
-🤍
+## 3. ⚙ 주요 기능 ⚙
 
 🧡**메인페이지**
 
@@ -81,7 +65,7 @@ Airbnb 클론코딩 : http://zhiyeonyi.shop.s3-website.ap-northeast-2.amazonaws.
 </br>
 </br>
 
-## 🎥 시연 영상 및 📖팀 노션 
+## 4. 🎥 시연 영상 및 📖팀 노션 
 
 -https://www.youtube.com/watch?v=Gl6DlLB67Rg
 
@@ -91,6 +75,8 @@ Airbnb 클론코딩 : http://zhiyeonyi.shop.s3-website.ap-northeast-2.amazonaws.
 </br>
 
 ## 느낀점
+
+실전만 남았다 한 주 한 주 배워가는 이 기분 산하나를 넘으면 더 큰산이 있어 두렵기만 기대된다.
 
 
           
