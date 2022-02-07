@@ -1,7 +1,5 @@
 # 1. 프로젝트 개요
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## 1) 프로젝트 주제
 
 Airbnb 클론코딩 : http://zhiyeonyi.shop.s3-website.ap-northeast-2.amazonaws.com/
